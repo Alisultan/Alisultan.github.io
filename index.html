@@ -8,12 +8,14 @@
   <meta property="og:title" content="Alissultan Abdirov | Electrical Engineering">
   <meta property="og:description" content="Selected work in embedded systems, controls, and energy.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alisultan.github.io/">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <script src="theme.js"></script>
+  <script src="haptic-demo.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261123">
   <title>Alissultan Abdirov | Electrical Engineering</title>
 </head>
 <body>
@@ -24,7 +26,7 @@
       <nav aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#work">Work</a>
-        <a href="#skills">Skills</a>
+        <a href="#coursework">Coursework</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -41,17 +43,17 @@
         <div class="hero-copy">
           <p class="eyebrow hero-label"><span></span> Electrical engineering &amp; embedded systems</p>
           <h1 id="hero-title">Alissultan <em>Abdirov</em></h1>
-          <p class="hero-description">I’m an <strong>Electrical Engineering student at Purdue University</strong> working across embedded controls and energy systems. My current capstone is a motorized knob that lets you feel what software is doing.</p>
+          <p class="hero-description">I’m an <strong>Electrical Engineering student at Purdue University</strong> working across embedded controls and energy systems. My capstone connects motor control, programmable haptics, and a macOS companion app to make software controls tangible.</p>
           <div class="actions">
-            <a class="button filled" href="#work">View my work <span aria-hidden="true">↘</span></a>
-            <a class="button outline" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+            <a class="button filled" href="#work">Explore my work</a>
+            <a class="button outline" href="#contact">Get in touch</a>
           </div>
         </div>
         <figure class="profile">
           <div class="portrait-frame">
             <img src="assets/alissultan-purdue.jpg" alt="Alissultan Abdirov standing by a Purdue University marker" width="1012" height="1350" fetchpriority="high">
           </div>
-          <figcaption class="profile-caption"><span>Fig. 01 / Purdue University</span><span>West Lafayette, IN</span></figcaption>
+          <figcaption class="profile-caption"><span>Purdue University</span><span>West Lafayette, IN</span></figcaption>
           <div class="profile-facts">
             <div><strong>Purdue</strong><span>B.S. Electrical Engineering</span></div>
             <div><strong>2027</strong><span>Expected graduation</span></div>
@@ -70,7 +72,7 @@
     </div>
 
     <section class="shell section" id="about">
-      <header class="section-heading"><span class="index">01</span><h2>About <em>me</em></h2></header>
+      <header class="section-heading"><h2>About <em>me</em></h2></header>
       <div class="about-grid">
         <div class="about-copy">
           <p class="lead">I’m drawn to problems where code has to work with a physical system.</p>
@@ -89,36 +91,65 @@
 
     <section class="work-section" id="work">
       <div class="shell section">
-        <header class="section-heading"><span class="index">02</span><h2>Selected <em>work</em></h2></header>
+        <header class="section-heading"><h2>Selected <em>work</em></h2></header>
 
-        <article class="project">
+        <article class="project project-featured" id="smartknob">
           <div class="project-copy">
-            <p class="eyebrow"><span class="dot"></span> Capstone design <span class="project-date">/ 2026–present</span></p>
-            <h3>Haptic Smart<br class="wide-break"> Control Knob</h3>
-            <p>I’m developing a motorized dial that can change how it feels as you turn it. Magnetic angle feedback lets the controller apply motor torque to create programmable detents, resistance, and virtual end stops.</p>
-            <ul class="tags" aria-label="Project technologies"><li>ESP32</li><li>BLDC</li><li>MT6701</li><li>TMC6300</li><li>KiCad</li></ul>
-            <details>
-              <summary>Engineering notes</summary>
-              <p>The MT6701 measures shaft angle. The ESP32 uses that feedback to command a TMC6300 driver and three-phase gimbal motor. I’m defining how host software will select feedback profiles over USB and preparing schematics for custom PCB integration.</p>
-            </details>
+            <p class="eyebrow">Senior design · Team project <span class="project-date">/ 2026–present</span></p>
+            <h3>Haptic Smart<br>Control Knob</h3>
+            <p class="project-subtitle">SmartKnob Rev A</p>
+            <p>A rotary controller whose clicks, resistance, and end stops are defined in software. Our team’s project combines a magnetic encoder, a BLDC motor, and embedded control to give digital settings a physical feel.</p>
+            <p>The current implementation includes Bluetooth volume and brightness control, a button to switch modes, and a macOS menu bar app that synchronizes the knob with the computer’s settings.</p>
+            <ul class="tags" aria-label="SmartKnob technologies"><li>ESP32</li><li>C++</li><li>FreeRTOS</li><li>SimpleFOC</li><li>Bluetooth LE</li><li>SwiftUI</li></ul>
+            <dl class="project-facts">
+              <div><dt>Control-task target</dt><dd>1 kHz</dd></div>
+              <div><dt>Haptic presets</dt><dd>8 profiles</dd></div>
+              <div><dt>Host integration</dt><dd>macOS</dd></div>
+            </dl>
           </div>
-          <figure class="diagram">
-            <div class="diagram-header"><span>Fig. 02 / Control loop</span><span>01</span></div>
-            <svg viewBox="0 0 430 218" role="img" aria-label="An ESP32 commands a motor driver and BLDC motor. The shaft angle returns to the ESP32 through a magnetic encoder.">
-              <defs><marker id="loop-arrow" markerWidth="6" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="m0 0 6 3.5L0 7Z" fill="currentColor"/></marker></defs>
-              <g class="signal" marker-end="url(#loop-arrow)"><path d="M124 73h38"/><path d="M266 73h38"/><path d="M357 99v66H267"/><path d="M162 165H73v-64"/></g>
-              <g class="node"><rect x="22" y="48" width="102" height="50"/><rect x="164" y="48" width="102" height="50"/><rect x="306" y="48" width="102" height="50"/><rect x="164" y="140" width="102" height="50"/></g>
-              <g class="diagram-text" text-anchor="middle"><text x="73" y="70">ESP32</text><text x="215" y="70">TMC6300</text><text x="357" y="70">BLDC</text><text x="215" y="162">MT6701</text></g>
-              <g class="diagram-label" text-anchor="middle"><text x="73" y="86">CONTROLLER</text><text x="215" y="86">DRIVER</text><text x="357" y="86">MOTOR</text><text x="215" y="178">ANGLE SENSOR</text></g>
-              <text class="diagram-label" x="22" y="129">ANGLE</text>
-            </svg>
-            <figcaption>Motor command and magnetic angle feedback</figcaption>
-          </figure>
+          <div class="haptic-demo" hidden>
+            <p class="demo-label">Explore the haptic profiles</p>
+            <div class="dial-stage" aria-hidden="true">
+              <div class="dial-ticks"></div>
+              <div class="dial-body"><span class="dial-pointer"></span><span class="dial-center">SmartKnob</span></div>
+            </div>
+            <div class="demo-readout"><output id="dial-value" for="dial-input">8 / 16</output><span id="dial-unit">bounded positions</span></div>
+            <fieldset class="profile-picker">
+              <legend>Select a feel</legend>
+              <label><input type="radio" name="haptic-profile" value="bounded" checked><span>Bounded</span></label>
+              <label><input type="radio" name="haptic-profile" value="coarse"><span>Coarse</span></label>
+              <label><input type="radio" name="haptic-profile" value="fine"><span>Fine</span></label>
+              <label><input type="radio" name="haptic-profile" value="free"><span>Free spin</span></label>
+            </fieldset>
+            <label class="dial-input-label" for="dial-input">Turn the dial</label>
+            <input id="dial-input" type="range" min="0" max="16" step="1" value="8" aria-describedby="profile-description">
+            <p id="profile-description">A 15° step between positions, with virtual end stops at 0 and 16.</p>
+            <p class="demo-note">Browser illustration of profile spacing. The physical knob generates the tactile feedback.</p>
+          </div>
+          <noscript><div class="demo-fallback"><h4>Software-defined feel</h4><p>Eight presets span fine and coarse clicks, free spin, bounded motion, spring-to-center, viscosity, and volume control.</p></div></noscript>
+          <div class="project-depth">
+            <div class="engineering-detail">
+              <h4>Real-time motor control</h4>
+              <p>An MT6701 magnetic encoder feeds shaft position into SimpleFOC. A dedicated FreeRTOS task handles the motor loop while Bluetooth and logging run separately.</p>
+              <details><summary>Calibration &amp; protection</summary><p>The firmware checks pole pairs and sensor direction, measures the electrical zero, and compensates for encoder nonlinearity. Driver faults, failed encoder reads, and overspeed conditions feed into motor supervision.</p></details>
+            </div>
+            <div class="engineering-detail">
+              <h4>Programmable feedback</h4>
+              <p>Profile data sets detent spacing, strength, damping, and travel limits. The same motor can act like a click wheel, a spring, or a viscous dial, with tap and buzz effects layered on top.</p>
+              <details><summary>How profiles stay stable</summary><p>Hysteresis controls when a detent advances, and a small dead zone reduces buzzing near its center. Profiles reach the control task through a mailbox and take effect without putting Bluetooth or application logic in the motor loop.</p></details>
+            </div>
+            <div class="engineering-detail">
+              <h4>Knob ↔ computer</h4>
+              <p>Bluetooth HID provides standalone volume and brightness keys. The macOS companion adds two-way setting synchronization and returns control to the knob when its connection ends.</p>
+              <details><summary>Companion architecture</summary><p>The SwiftUI app separates Bluetooth transport, protocol decoding, host-setting adapters, and UI state. A verified connection and renewable control lease coordinate which side owns a setting, with simulated transport and host-side tests for the shared logic.</p></details>
+            </div>
+          </div>
+          <p class="project-scope">Current prototype · Architecture and features summarized from our team’s private development repository.</p>
         </article>
 
         <article class="project">
           <div class="project-copy">
-            <p class="eyebrow"><span class="dot"></span> Purdue IEEE Racing <span class="project-date">/ 2025–26</span></p>
+            <p class="eyebrow">Purdue IEEE Racing · Team lead <span class="project-date">/ 2025–26</span></p>
             <h3>Electric Vehicle<br class="wide-break"> Localization</h3>
             <p>I implemented visual-inertial SLAM to estimate an electric vehicle’s position in real time. I also designed and tested power distribution and safety circuits and integrated ESP32 controllers for embedded sensing.</p>
             <ul class="tags" aria-label="Project technologies"><li>Visual-inertial SLAM</li><li>ESP32</li><li>C/C++</li><li>Python</li></ul>
@@ -128,7 +159,7 @@
             </details>
           </div>
           <figure class="diagram">
-            <div class="diagram-header"><span>Fig. 03 / Localization</span><span>02</span></div>
+            <div class="diagram-header"><span>Visual-inertial localization</span></div>
             <svg viewBox="0 0 430 218" role="img" aria-label="Illustrative vehicle trajectory showing successive pose estimates and observed landmarks">
               <g class="diagram-guides"><path d="M41 36v141h347"/><path d="M41 72h347m-347 35h347m-347 35h347M95 36v141m54-141v141m54-141v141m54-141v141m54-141v141m54-141v141"/></g>
               <g class="observations"><path d="M97 151l32-55m31 28-31-28m31 28 46-66m25 41-25-41m25 41 77 37m-20-66 20 66m-20-66 65-27m-13 39 13-39"/><circle cx="129" cy="96" r="4"/><circle cx="206" cy="58" r="4"/><circle cx="308" cy="136" r="4"/><circle cx="353" cy="43" r="4"/></g>
@@ -142,19 +173,68 @@
       </div>
     </section>
 
+    <section class="shell section coursework-section" id="coursework">
+      <header class="section-heading"><h2>Coursework <em>in practice</em></h2></header>
+      <p class="section-intro">Selected Purdue courses across digital hardware, control, and energy. These are the foundations I bring into my projects.</p>
+      <div class="course-grid">
+        <article class="course-card">
+          <div class="course-meta"><span>ECE 43700</span><span>Spring 2026</span></div>
+          <h3>Computer Design<br>&amp; Prototyping</h3>
+          <p>Processor datapaths and control, pipelining, cache hierarchies, and performance analysis. The laboratory sequence develops single-cycle and pipelined processors, then adds caches and multicore concepts.</p>
+          <p class="course-connection">Focus · Computer architecture &amp; digital systems</p>
+          <a href="https://engineering.purdue.edu/ECE/Academics/Undergraduates/UGO/CourseInfo/courseInfo?courseid=143">Purdue course description</a>
+        </article>
+        <article class="course-card">
+          <div class="course-meta"><span>ECE 38200</span><span>Fall 2026</span></div>
+          <h3>Feedback System<br>Analysis &amp; Design</h3>
+          <p>System modeling, stability, and compensator design. My MATLAB work examines closed-loop poles, root locus, and controller behavior.</p>
+          <p class="course-connection">Connection · Closed-loop haptic control</p>
+          <a href="https://engineering.purdue.edu/ECE/Academics/Undergraduates/UGO/CourseInfo/courseInfo?courseid=74&amp;show=true&amp;type=undergrad">Purdue course description</a>
+        </article>
+        <article class="course-card">
+          <div class="course-meta"><span>ECE 31032</span><span>Fall 2026</span></div>
+          <h3>Power Systems<br>Engineering</h3>
+          <p>Network modeling and power-flow analysis. I implemented Jacobi power-flow iterations for the IEEE 14-bus system and compared results with MATPOWER’s Newton–Raphson solver.</p>
+          <p class="course-connection">Applied work · Voltage, line loading &amp; losses</p>
+          <a href="https://engineering.purdue.edu/ECE/Academics/Undergraduates/UGO/CourseInfo/courseInfo?courseid=764&amp;show=true&amp;type=undergrad">Purdue course description</a>
+        </article>
+        <article class="course-card">
+          <div class="course-meta"><span>ECE 33700</span><span>Fall 2025</span></div>
+          <h3>ASIC Design<br>Laboratory</h3>
+          <p>Hardware description, logic synthesis, simulation, timing analysis, and verification using commercial design tools.</p>
+          <p class="course-connection">Focus · From RTL to hardware</p>
+          <a href="https://engineering.purdue.edu/ECE/Academics/Undergraduates/UGO/CourseInfo/courseInfo?courseid=613&amp;show=true&amp;type=undergrad">Purdue course description</a>
+        </article>
+        <article class="course-card">
+          <div class="course-meta"><span>ECE 36200</span><span>Fall 2025</span></div>
+          <h3>Microprocessor Systems<br>&amp; Interfacing</h3>
+          <p>Embedded hardware and software through GPIO, interrupts, timers, ADC and DMA, PWM, SPI, UART, and RISC-V laboratory work.</p>
+          <p class="course-connection">Connection · Sensors, motor drivers &amp; firmware</p>
+          <a href="https://engineering.purdue.edu/ece362/">Purdue course website</a>
+        </article>
+        <article class="course-card">
+          <div class="course-meta"><span>NUCL 30000</span><span>Fall 2026</span></div>
+          <h3>Nuclear Structure<br>&amp; Radiation Interactions</h3>
+          <p>Nuclear models, radioactive decay, and how radiation interacts with matter. Part of my Nuclear Engineering minor and broader interest in energy systems.</p>
+          <p class="course-connection">Focus · Nuclear science &amp; energy</p>
+          <a href="https://engineering.purdue.edu/NE/academics/syllabi_ugrad">Purdue nuclear course syllabi</a>
+        </article>
+      </div>
+    </section>
+
     <section class="shell section" id="skills">
-      <header class="section-heading"><span class="index">03</span><h2>Skills <em>&amp; stack</em></h2></header>
+      <header class="section-heading"><h2>Skills <em>&amp; stack</em></h2></header>
       <div class="skills-grid">
-        <article><span class="index">01 / CODE</span><h3>Programming</h3><ul class="tags"><li>Python</li><li>C/C++</li><li>MATLAB</li><li>SystemVerilog</li></ul></article>
-        <article><span class="index">02 / HARDWARE</span><h3>Embedded systems</h3><ul class="tags"><li>ESP32 &amp; ESP32-S3</li><li>Arduino</li><li>BLDC motors</li><li>Magnetic encoders</li><li>FPGA</li></ul></article>
-        <article><span class="index">03 / SIMULATION</span><h3>Design &amp; modeling</h3><ul class="tags"><li>KiCad</li><li>LTspice</li><li>Simulink</li><li>AutoCAD</li></ul></article>
-        <article><span class="index">04 / LAB</span><h3>Testing &amp; workflow</h3><ul class="tags"><li>LabVIEW</li><li>WaveForms</li><li>Git &amp; GitHub</li><li>Excel</li></ul></article>
+        <article><span class="index">Code</span><h3>Programming</h3><ul class="tags"><li>Python</li><li>C/C++</li><li>MATLAB</li><li>SystemVerilog</li></ul></article>
+        <article><span class="index">Hardware</span><h3>Embedded systems</h3><ul class="tags"><li>ESP32 &amp; ESP32-S3</li><li>FreeRTOS</li><li>SimpleFOC</li><li>Arduino</li><li>BLDC motors</li><li>Magnetic encoders</li><li>FPGA</li></ul></article>
+        <article><span class="index">Simulation</span><h3>Design &amp; modeling</h3><ul class="tags"><li>KiCad</li><li>LTspice</li><li>Simulink</li><li>AutoCAD</li></ul></article>
+        <article><span class="index">Lab</span><h3>Testing &amp; workflow</h3><ul class="tags"><li>LabVIEW</li><li>WaveForms</li><li>Git &amp; GitHub</li><li>Excel</li></ul></article>
       </div>
     </section>
 
     <section class="experience-section" id="experience">
       <div class="shell section">
-        <header class="section-heading"><span class="index">04</span><h2>Experience <em>&amp; education</em></h2></header>
+        <header class="section-heading"><h2>Experience <em>&amp; education</em></h2></header>
         <ol class="timeline">
           <li><span class="period">Jul–Aug 2026</span><div><h3>Agency of the Republic of Kazakhstan for Atomic Energy</h3><p class="role">Nuclear Energy Policy and Research Intern · Astana</p><p>Researched reactor technologies and fuel cycles, summarized IAEA infrastructure review materials, and translated technical documents between English and Russian.</p></div></li>
           <li><span class="period">May–Jul 2026</span><div><h3>Air Astana</h3><p class="role">Aircraft Maintenance Control Intern · Almaty</p><p>Tracked fleet status and maintenance items in TRAX and reviewed technical records and oil-analysis reports for daily fleet updates.</p></div></li>
@@ -168,17 +248,17 @@
     <section class="contact" id="contact">
       <div class="shell contact-inner">
         <div>
-          <p class="eyebrow">05 <span class="contact-divider"></span> Contact</p>
+          <p class="eyebrow">Contact</p>
           <h2>Let’s <em>connect.</em></h2>
           <p>I’d like to hear from people working on embedded hardware, controls, or energy systems.</p>
         </div>
         <div class="contact-links">
-          <a href="mailto:aabdirov@purdue.edu"><span>Email <small>aabdirov@purdue.edu</small></span><span aria-hidden="true">↗</span></a>
-          <a href="https://www.linkedin.com/in/aabdirov"><span>LinkedIn <small>linkedin.com/in/aabdirov</small></span><span aria-hidden="true">↗</span></a>
+          <a href="mailto:aabdirov@purdue.edu"><span>Email <small>aabdirov@purdue.edu</small></span></a>
+          <a href="https://www.linkedin.com/in/aabdirov"><span>LinkedIn <small>linkedin.com/in/aabdirov</small></span></a>
         </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="shell"><span>© 2026 Alissultan Abdirov</span><a href="#home">Back to top <span aria-hidden="true">↑</span></a></div></footer>
+  <footer class="site-footer"><div class="shell"><span>© 2026 Alissultan Abdirov</span><a href="#home">Back to top</a></div></footer>
 </body>
 </html>
